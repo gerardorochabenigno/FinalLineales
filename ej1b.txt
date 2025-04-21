@@ -1,0 +1,24 @@
+# Modelo de tendencia estocástica en JAGS
+model{
+    # Ecuación de observación
+    for(t in 1:T){
+        y[t] ~ dnorm(mu[t], v)
+    }
+    # Ecuación de estado
+    mu[1]   ~ dnorm(0, 0.001)
+    beta[1] ~ dnorm(0, 0.001)
+    for (t in 2:T){
+        mu[t] ~ dnorm(mu[t-1] + beta[t-1], w1)
+        beta[t] ~ dnorm(beta[t-1], w2)
+    }
+
+    # Priors
+    v ~ dgamma(0.001, 0.001)
+    w1 ~ dgamma(0.001, 0.001)
+    w2 ~ dgamma(0.001, 0.001)
+
+    # Predicciones
+    for (t in 1:T){
+        ypred[t] ~ dnorm(mu[t], v)
+    }
+}
