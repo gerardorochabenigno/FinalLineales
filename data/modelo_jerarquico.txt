@@ -1,0 +1,29 @@
+model {
+  # Likelihood
+  for(i in 1:N) {
+    for(j in 1:B) {
+      monto[i,j] ~ dgamma(shape[i,j], rate[i,j])
+      shape[i,j] <- mu[i,j]^2 / sigma2
+      rate[i,j] <- mu[i,j] / sigma2
+      log(mu[i,j]) <- alpha[j] + beta1 * cuentas[i,j] + beta2 * operaciones[i,j]
+    }
+  }
+  
+  # Efectos aleatorios por banco
+  for(j in 1:B) {
+    alpha[j] ~ dnorm(mu_alpha, tau_alpha)
+  }
+  
+  # Hiperparámetros
+  mu_alpha ~ dnorm(0, 0.001)
+  tau_alpha <- 1/pow(sigma_alpha, 2)
+  sigma_alpha ~ dunif(0, 10)
+  
+  # Efectos fijos (compartidos entre bancos)
+  beta1 ~ dnorm(0, 0.001)
+  beta2 ~ dnorm(0, 0.001)
+  
+  # Dispersión
+  sigma2 <- pow(sigma, 2)
+  sigma ~ dunif(0, 10)
+}
