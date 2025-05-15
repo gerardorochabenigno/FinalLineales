@@ -1,0 +1,35 @@
+2025-03-16 21:25:09,030 - INFO - ETL exitoso. Datos guardados en data/raw/inflacion.csv
+2025-03-16 21:25:11,241 - ERROR - Error al subir data/raw/inflacion.csv a S3: Unable to locate credentials
+2025-03-16 21:26:06,269 - INFO - ETL exitoso. Datos guardados en data/raw/inflacion.csv
+2025-03-16 21:26:08,363 - ERROR - Error al subir data/raw/inflacion.csv a S3: Unable to locate credentials
+2025-03-16 21:26:08,363 - INFO - Archivo data/raw/inflacion.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/inflacion.csv
+2025-03-16 21:26:47,166 - INFO - ETL exitoso. Datos guardados en data/raw/inflacion.csv
+2025-03-16 21:26:47,173 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-03-16 21:26:48,122 - INFO - Archivo data/raw/inflacion.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/inflacion.csv
+2025-03-16 21:26:48,125 - INFO - Archivo data/raw/inflacion.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/inflacion.csv
+2025-03-16 21:28:26,989 - INFO - ETL exitoso. Datos guardados en data/raw/inflacion.csv
+2025-03-16 21:28:26,996 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-03-16 21:28:28,421 - INFO - Archivo data/raw/inflacion.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/inflacion/inflacion.csv
+2025-03-16 21:28:28,424 - INFO - Archivo data/raw/inflacion.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/inflacion/inflacion.csv
+2025-03-16 21:29:05,576 - INFO - ETL exitoso. Datos guardados en data/raw/tasa_de_interes.csv
+2025-03-16 21:29:05,583 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-03-16 21:29:07,459 - INFO - Archivo data/raw/tasa_de_interes.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/tasa_de_interes/tasa_de_interes.csv
+2025-03-16 21:29:07,462 - INFO - Archivo data/raw/tasa_de_interes.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/tasa_de_interes/tasa_de_interes.csv
+2025-03-16 21:29:31,020 - INFO - ETL exitoso. Datos guardados en data/raw/tipo_de_cambio.csv
+2025-03-16 21:29:31,027 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-03-16 21:29:33,005 - INFO - Archivo data/raw/tipo_de_cambio.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/tipo_de_cambio/tipo_de_cambio.csv
+2025-03-16 21:29:33,007 - INFO - Archivo data/raw/tipo_de_cambio.csv subido exitosamente a s3://itam-analytics-grb/econ/raw/tipo_de_cambio/tipo_de_cambio.csv
+2025-05-11 19:13:51,807 - ERROR - Serie 'SF335591' no permitida. Solo 'tipo_de_cambio', 'tasa_de_interes', 'inflacion'.
+2025-05-11 19:13:51,808 - ERROR - Error en el ETL para SF335591: Serie 'SF335591' no permitida. Solo 'tipo_de_cambio', 'tasa_de_interes', 'inflacion'.
+2025-05-11 19:15:58,269 - ERROR - Error en los datos de SF335591: could not convert string to float: '20,477'
+2025-05-11 19:15:58,269 - ERROR - Error en el ETL para SF335591: 'NoneType' object has no attribute 'to_csv'
+2025-05-11 19:17:18,335 - INFO - ETL exitoso. Datos guardados en data/raw/SF335591.csv
+2025-05-11 19:19:47,247 - INFO - ETL exitoso. Datos guardados en data/raw/validadas.csv
+2025-05-11 19:24:04,867 - ERROR - Error en los datos de SF335630: could not convert string to float: ''
+2025-05-11 19:24:04,867 - ERROR - Error en el ETL para SF335630: 'NoneType' object has no attribute 'to_csv'
+2025-05-11 19:28:39,697 - INFO - ETL exitoso. Datos guardados en data/raw/cuentas_un_pago.csv
+2025-05-11 19:29:13,262 - INFO - ETL exitoso. Datos guardados en data/raw/cuentas_un_cobro.csv
+2025-05-11 19:30:01,194 - INFO - ETL exitoso. Datos guardados en data/raw/android.csv
+2025-05-11 19:30:22,350 - INFO - ETL exitoso. Datos guardados en data/raw/apple.csv
+2025-05-11 19:30:49,072 - INFO - ETL exitoso. Datos guardados en data/raw/ops.csv
+2025-05-11 19:31:50,555 - INFO - ETL exitoso. Datos guardados en data/raw/monto.csv
