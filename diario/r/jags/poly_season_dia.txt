@@ -1,30 +1,38 @@
-# Modelo de tendencia local
+# Modelo de crecimiento local lineal + efectos por día de la semana
 model {
   # Observación
   for (t in 1:n_train) {
-    y[t] ~ dnorm(mu[t], tau.y)
+    y[t] ~ dnorm(mu[t] + inprod(X[t,], alpha[]), tau.y)
   }
   
   # Estado
   for (t in 2:(n_train + n_test)) {
-    mu[t] ~ dnorm(mu[t-1], tau.mu)  # Proceso de nivel local
+    mu[t] ~ dnorm(mu[t-1] + beta[t-1], tau.mu)  # Proceso de nivel local + crecimiento
+    beta[t] ~ dnorm(beta[t-1], tau.beta)  # Proceso crecimiento
   }
 
   # Priors
   mu[1] ~ dnorm(4756, 0.001) # Baja precisión, media igual al valor oservado en t=1
-  tau.y  ~ dgamma(0.1, 0.1)  # Varianza observacional
-  tau.mu ~ dgamma(0.001, 0.001)  # Varianza del proceso
+  beta[1] ~ dnorm(0, 0.0001) # Baja precisión, media cero
+  tau.y  ~ dgamma(1, 1)  # Varianza observacional
+  tau.mu ~ dgamma(0.001, 0.001)  # Varianza del estado
+  tau.beta ~ dgamma(.01, .011)
+  tau.alpha ~ dgamma(1, 1)
+  for (j in 1:p) {
+  alpha[j] ~ dnorm(0, tau_alpha[j])
+  tau_alpha[j] ~ dgamma(1, 1) 
+  }
   
   # Predicción dentro de la muestra
   for (i in 1:n_train) {
-    yf1[i] ~ dnorm(mu[i],tau.y)
+    yf1[i] ~ dnorm(mu[i] + inprod(X[i,], alpha[]), tau.y)
     e2_in[i] <- pow(yf1[i] - y[i], 2) # Para calcular RMSE
     ae_in[i] <- abs(yf1[i] - y[i]) # Para calcular MAE
     }
   
   # Predicción fuera de la muestra
   for (t in (n_train+1):(n_train + n_test)){
-    yf2[t-n_train] <- mu[t]
+    yf2[t - n_train] <- mu[t] + inprod(X[t,], alpha[])
     e2_out[t - n_train] <- pow(yf2[t - n_train] - y_test[t - n_train], 2) # Para calcular RMSE
     ae_out[t - n_train] <- abs(yf2[t - n_train] - y_test[t - n_train]) # Para calculae MAE
   }

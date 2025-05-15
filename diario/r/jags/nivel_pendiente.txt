@@ -1,4 +1,4 @@
-# Modelo de tendencia local
+# Modelo de crecimiento local lineal
 model {
   # Observación
   for (t in 1:n_train) {
@@ -7,13 +7,16 @@ model {
   
   # Estado
   for (t in 2:(n_train + n_test)) {
-    mu[t] ~ dnorm(mu[t-1], tau.mu)  # Proceso de nivel local
+    mu[t] ~ dnorm(mu[t-1] + beta[t-1], tau.mu)  # Proceso de nivel local + crecimiento
+    beta[t] ~ dnorm(beta[t-1], tau.beta)  # Proceso crecimiento
   }
 
   # Priors
   mu[1] ~ dnorm(4756, 0.001) # Baja precisión, media igual al valor oservado en t=1
-  tau.y  ~ dgamma(0.1, 0.1)  # Varianza observacional
-  tau.mu ~ dgamma(0.001, 0.001)  # Varianza del proceso
+  beta[1] ~ dnorm(0, 0.0001) # Baja precisión, media cero
+  tau.y  ~ dgamma(0.001, 0.001)  # Varianza observacional
+  tau.mu ~ dgamma(0.001, 0.001)  # Varianza del estado
+  tau.beta ~ dgamma(1, 1)
   
   # Predicción dentro de la muestra
   for (i in 1:n_train) {
